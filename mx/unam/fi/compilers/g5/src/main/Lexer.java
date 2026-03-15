@@ -118,7 +118,11 @@ public class Lexer {
                     break;
                 }
             }
-            if(!matched) position++;
+            if(!matched) {
+                String invalidLexeme = String.valueOf(input.charAt(position));
+                tokens.add(new Token(TokenType.ERROR, invalidLexeme));
+                position++;
+            }
         }
         
         return tokens;

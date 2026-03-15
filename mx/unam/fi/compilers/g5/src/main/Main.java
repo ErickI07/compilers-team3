@@ -25,16 +25,26 @@ public class Main {
             
             System.out.println("#\tTYPE\t\tLEXEME");
             List<Token> fileTokens = lexer.tokenizeFile("../../doc/test/test.c");
-            int countTokens = fileTokens.size();
+            
             for (Token token : fileTokens) {
                 System.out.println(cntTokens + "\t" + token);
                 cntTokens++;
             }
             
             System.out.println("----------------------------------------------------");
-            System.out.println("Total tokens: " + countTokens);
+            System.out.println("Total tokens: " + countTokens(fileTokens));
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
+    }
+    
+    private static int countTokens(List<Token> tokens) {
+    int cnt = 0;
+    
+    for (Token token : tokens) {
+        if (token.getType() != TokenType.ERROR) cnt++;
+    }
+    
+    return cnt;
     }
 }

@@ -12,4 +12,5 @@ public enum TokenType {
     PUNCTUATOR,
     CONSTANT,
     LITERAL,
+    ERROR
 }
