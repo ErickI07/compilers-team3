@@ -43,16 +43,16 @@ public class Lexer {
          * tokes that the lexer
          * must recognize
          */
-        //* literals
+        //* literals (double quotation marks)
         rules.add(new LexerRule(
             TokenType.LITERAL,
             "\"([^\"\\\\]|\\\\.)*\"",
             false
         ));
         
-        //* constants (character)
+        //* literals (single quotes)
         rules.add(new LexerRule(
-            TokenType.CONSTANT,
+            TokenType.LITERAL,
             "'([^'\\\\]|\\\\.)'",
             false
         ));
@@ -118,13 +118,9 @@ public class Lexer {
                     break;
                 }
             }
-            if(!matched) {
-                String invalidLexeme = String.valueOf(input.charAt(position));
-                tokens.add(new Token(TokenType.ERROR, invalidLexeme));
-                position++;
-            }
+            if(!matched) position++;
         }
-        tokens.add(new Token(TokenType.EOF, "EOF"));
+        
         return tokens;
     }
     
